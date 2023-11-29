@@ -2,42 +2,42 @@
 #include <Windows.h>
 #include <iostream>
 using namespace std;
-//²¥·ÅÉùÒôµÄÍ·ÎÄ¼ş
+//æ’­æ”¾å£°éŸ³çš„å¤´æ–‡ä»¶
 #include <mmsyscom.h>
 #pragma comment(lib, "winmm.lib")
-//ÊÓÆµ×ª»»//1¡¢°²×°OpenCV£¨É¨Ãè¶şÎ¬Âë£¬¼ÓÎ÷Î÷ÀÏÊ¦QQ£©
+//è§†é¢‘è½¬æ¢//1ã€å®‰è£…OpenCVï¼ˆæ‰«æäºŒç»´ç ï¼ŒåŠ è¥¿è¥¿è€å¸ˆQQï¼‰
 #include <opencv2/opencv.hpp>
-using namespace cv; //ÉùÃ÷opencvµÄÃüÃû¿Õ¼ä
+using namespace cv; //å£°æ˜opencvçš„å‘½åç©ºé—´
 int main(void) {
-	//1¡¢´ò¿ªÊÓÆµÎÄ¼ş
-	//ÏÂÔØÒ»¸ömp4ÊÓÆµ£¬ÓëÔ´ÎÄ¼şÍ¬Ä¿Â¼£»
-	//½«mp4×ªÎªmp3£¬ÓëÔ´ÎÄ¼şÍ¬Ä¿Â¼£¬ÒòÎªÊÓÆµ×ªÎª×Ö·û¾ÍÃ»ÓĞÉùÒôÁË£»
+	//1ã€æ‰“å¼€è§†é¢‘æ–‡ä»¶
+	//ä¸‹è½½ä¸€ä¸ªmp4è§†é¢‘ï¼Œä¸æºæ–‡ä»¶åŒç›®å½•ï¼›
+	//å°†mp4è½¬ä¸ºmp3ï¼Œä¸æºæ–‡ä»¶åŒç›®å½•ï¼Œå› ä¸ºè§†é¢‘è½¬ä¸ºå­—ç¬¦å°±æ²¡æœ‰å£°éŸ³äº†ï¼›
 	VideoCapture video;
-	bool ret = video.open("Â¥Ìİ¿ÆÄ¿Èı.mp4");//ret = return
+	bool ret = video.open("æ¥¼æ¢¯ç§‘ç›®ä¸‰.mp4");//ret = return
 	if (ret == false) {
-		printf("ÊÓÆµÎÄ¼ş´ò¿ªÊ§°Ü£¡©Ñ©Ò©n©Ñ©Ò\n");
+		printf("è§†é¢‘æ–‡ä»¶æ‰“å¼€å¤±è´¥ï¼â”­â”®ï¹â”­â”®\n");
 	}
 	else {
-		printf("ÊÓÆµÎÄ¼ş´ò¿ª³É¹¦£¡(*^¨Œ^*)\n");
+		printf("è§†é¢‘æ–‡ä»¶æ‰“å¼€æˆåŠŸï¼(*^â–½^*)\n");
 	}
-	//2¡¢¶ÁÈ¡ÊÓÆµµÄºËĞÄĞÅÏ¢£¨ÓĞ¶àÉÙÖ¡£¬ÊÓÆµµÄ¿í¶È£¬¸ß¶È£¬²¥·ÅµÄËÙ¶È£©
+	//2ã€è¯»å–è§†é¢‘çš„æ ¸å¿ƒä¿¡æ¯ï¼ˆæœ‰å¤šå°‘å¸§ï¼Œè§†é¢‘çš„å®½åº¦ï¼Œé«˜åº¦ï¼Œæ’­æ”¾çš„é€Ÿåº¦ï¼‰
 	video.get(CAP_PROP_FRAME_COUNT);
-	//Ö¡Êı
+	//å¸§æ•°
 	int frame_count = video.get(CAP_PROP_FRAME_COUNT);
 	int fps = video.get(CAP_PROP_FPS);
-	//¿í¸ß
+	//å®½é«˜
 	int cols = video.get(CAP_PROP_FRAME_WIDTH);
 	int rows = video.get(CAP_PROP_FRAME_HEIGHT);
-	//¶¨Òå³éÑùµÄ³ß¶È
+	//å®šä¹‰æŠ½æ ·çš„å°ºåº¦
 	int w_size = 9;
 	int h_size = 20;
-	//×¼±¸ Ã¿10ĞĞ£¬Ã¿5ÁĞ³éÈ¡Ò»¸öµã£¬×ª»»³ÉÒ»¸ö×Ö·û
-	//Ô­Àí£ººÜ°× -> ¿Õ¸ñ
-	char char_imgs[] = "`.-':_,^=;><+!rc*/z?sLTv)J7(|Fi{C}fI31tlu[neoZ5Yxjya]2ESwqkP6h9d4VpOGbUAKXHm8RD#$Bg0MNWQ%&@@@@@@@@@@@@@@@";//0 - 255,·Ö³É69¼¶
+	//å‡†å¤‡ æ¯10è¡Œï¼Œæ¯5åˆ—æŠ½å–ä¸€ä¸ªç‚¹ï¼Œè½¬æ¢æˆä¸€ä¸ªå­—ç¬¦
+	//åŸç†ï¼šå¾ˆç™½ -> ç©ºæ ¼
+	char char_imgs[] = "`.-':_,^=;><+!rc*/z?sLTv)J7(|Fi{C}fI31tlu[neoZ5Yxjya]2ESwqkP6h9d4VpOGbUAKXHm8RD#$Bg0MNWQ%&@@@@@@@@@@@@@@@";//0 - 255,åˆ†æˆ69çº§
 	int len = sizeof(char_imgs) / sizeof(char_imgs[0]);
-	//Ã¿¸öÏñËØµãµÄ»Ò¶ÈÖµ ³ıÒÔ20 ×÷Îª×Ö·ûµÄĞòºÅ
+	//æ¯ä¸ªåƒç´ ç‚¹çš„ç°åº¦å€¼ é™¤ä»¥20 ä½œä¸ºå­—ç¬¦çš„åºå·
 
-	//¿ØÖÆÌ¨µÄ´°¿Ú
+	//æ§åˆ¶å°çš„çª—å£
 	int width = cols / w_size;
 	int height = rows / h_size;
 	// mode con cols = 100 lines = 80
@@ -45,30 +45,30 @@ int main(void) {
 	sprintf_s(cmd, sizeof(cmd), "mode con cols = %d lines = %d", width, height);
 	system(cmd);
 
-	//ÉêÇëÄÚ´æ 
+	//ç”³è¯·å†…å­˜ 
 	int frame_size = height * (width + 1) + 1;
 	//frame_size * frame_count
-	//´ıÓÅ»¯£ºÃ¿Ò»Ö¡Í¼Æ¬£¬ÉêÇëÒ»¿éÄÚ´æ
+	//å¾…ä¼˜åŒ–ï¼šæ¯ä¸€å¸§å›¾ç‰‡ï¼Œç”³è¯·ä¸€å—å†…å­˜
 	char* data = (char*)malloc(frame_size * frame_count);
 	if (data == NULL) {
-		printf("ÄÚ´æ²»×ã");
+		printf("å†…å­˜ä¸è¶³");
 	}
 
-	//3¡¢°ÑÊÓÆµÊı¾İ£¬×ª»»³É×Ö·ûÊı×é
+	//3ã€æŠŠè§†é¢‘æ•°æ®ï¼Œè½¬æ¢æˆå­—ç¬¦æ•°ç»„
 	Mat frame_img;
 	Mat gray_img;
 	for (int n = 0; n < frame_count; n++) {
 		char* p = data + n * frame_size;
 		int k = 0;
-		//¶ÁÈ¡Ò»Ö¡Êı¾İ
+		//è¯»å–ä¸€å¸§æ•°æ®
 		video.read(frame_img);
 
-		//°Ñ¶Áµ½µÄÍ¼ÏñÊı¾İ£¬×ª³É¡°»Ò¶È¡±ÎÄ¼ş
+		//æŠŠè¯»åˆ°çš„å›¾åƒæ•°æ®ï¼Œè½¬æˆâ€œç°åº¦â€æ–‡ä»¶
 		cvtColor(frame_img, gray_img, COLOR_BGR2GRAY);
 
 		for (int row = 0; row < rows - h_size; row += h_size) {
 			for (int col = 0; col < cols - w_size; col += w_size) {
-				//³éÈ¡Ö¸¶¨ĞĞ£¬ÖÆ¶¨ÁĞµÄ»Ò¶ÈÖµ
+				//æŠ½å–æŒ‡å®šè¡Œï¼Œåˆ¶å®šåˆ—çš„ç°åº¦å€¼
 				int value = gray_img.at<uchar>(row, col);
 				p[k++] = char_imgs[value / (255/len + 1)];
 			}
@@ -76,22 +76,23 @@ int main(void) {
 		}
 		p[k++] = 0;
 
-		//system("cls");//¿É¼Ó¿É²»¼Ó
+		//system("cls");//å¯åŠ å¯ä¸åŠ 
 
-		printf("ÕıÔÚ¶ÁÈ¡£º %d / %d", n + 1, frame_count);
+		printf("æ­£åœ¨è¯»å–ï¼š %d / %d", n + 1, frame_count);
+		cout <<  endl;
 	}
-	//4¡¢²¥·Å£¨Ñ­»·´òÓ¡£©
+	//4ã€æ’­æ”¾ï¼ˆå¾ªç¯æ‰“å°ï¼‰
 	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 	COORD pos = { 0, 0 };
 	while (1) {
 		cout << "----------------------------------------------" << endl;
 		for (int i = 0; i < frame_count; i++) {
-			char* p = data + i * frame_size;//Ã¿Ò»Ö¡×Ö·û´®µÄÆğÊ¼Î»ÖÃ
+			char* p = data + i * frame_size;//æ¯ä¸€å¸§å­—ç¬¦ä¸²çš„èµ·å§‹ä½ç½®
 
-			//ÏÈ°Ñ¿ØÖÆÌ¨µÄ¹â±êÒÆ¶¯µ½×î¿ªÊ¼µÄÎ»ÖÃ
+			//å…ˆæŠŠæ§åˆ¶å°çš„å…‰æ ‡ç§»åŠ¨åˆ°æœ€å¼€å§‹çš„ä½ç½®
 			SetConsoleCursorPosition(h, pos);
 			printf("%s", p);
-			Sleep(750 / fps);//Ö¡µÈ´ıÊ±¼ä
+			Sleep(750 / fps);//å¸§ç­‰å¾…æ—¶é—´
 
 		}
 	}
