@@ -13,7 +13,7 @@ int main(void) {
 	//下载一个mp4视频，与源文件同目录；
 	//将mp4转为mp3，与源文件同目录，因为视频转为字符就没有声音了；
 	VideoCapture video;
-	bool ret = video.open("楼梯科目三.mp4");//ret = return
+	bool ret = video.open("视频文件名.mp4");//ret = return
 	if (ret == false) {
 		printf("视频文件打开失败！┭┮﹏┭┮\n");
 	}
