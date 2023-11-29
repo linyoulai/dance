@@ -5,7 +5,6 @@ using namespace std;
 //播放声音的头文件
 #include <mmsyscom.h>
 #pragma comment(lib, "winmm.lib")
-//视频转换//1、安装OpenCV（扫描二维码，加西西老师QQ）
 #include <opencv2/opencv.hpp>
 using namespace cv; //声明opencv的命名空间
 int main(void) {
